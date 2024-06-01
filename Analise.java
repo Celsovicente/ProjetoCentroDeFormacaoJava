@@ -45,9 +45,14 @@
 ----------------------------------*/
 
 /*----------------------------------
-    5 - Ficheiro
+    5 - Tabelas de Apoio aux
     Formador.tab
     Curso.tab
     Nacionalidade.tab
     Morada.tab (provincia, municipio, comuna)
 -----------------------------------*/
+
+/*6. Diversos
+6.1 - Implementação: Java Swing
+6.2 - IDE: VS Code
+*/
