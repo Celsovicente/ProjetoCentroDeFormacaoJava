@@ -36,7 +36,7 @@ o progresso dos cursos e gerir os pagamentos dentro de um centro de formação p
 
 - InscricaoModelo
     int id
-    FormandoModelo aluno
+    FormandoModelo
     CursoModelo curso
     String dataInscricao
     String dataInicioCurso
