@@ -11,7 +11,7 @@ Data: 20.05.2024
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import SwingComponents.*; 
+import SwingComponents.*;
 import Calendario.*;
 
 public class MenuPrincipal extends JFrame implements ActionListener
@@ -20,7 +20,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
     
     private JMenu ficheiroMenu, operacoesMenu, ajudaMenu, tabelasMenu;
     private JMenuItem  nacionalidadeItem, provinciaItem, municipioItem, comunaItem, 
-    cursoItem, formadorItem, metodoPagamentoItem;
+    cursoItem, formadorItem, metodoPagamentoItem, tipoDeDocumentoItem;
     
     private JMenuItem registarInscricaoItem, registarSaidaItem;
     private JMenuItem novoFormandoItem, editarFormandoItem, eliminarFormandoItem, sairItem;
@@ -85,6 +85,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
         formadorItem = new JMenuItem("Formador");
         cursoItem = new JMenuItem("Curso");
         metodoPagamentoItem = new JMenuItem("Metodo de Pagamento");
+        tipoDeDocumentoItem = new JMenuItem("Tipo de Documento");
 
         tabelasMenu.add(nacionalidadeItem);
         tabelasMenu.add(provinciaItem);
@@ -93,6 +94,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
         tabelasMenu.add(formadorItem);
         tabelasMenu.add(cursoItem);
         tabelasMenu.add(metodoPagamentoItem);
+        tabelasMenu.add(tipoDeDocumentoItem);
 
         // adicionando iten do menu operacoes
         registarInscricaoItem = new JMenuItem("Nova Inscricao");
@@ -110,6 +112,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
         cursoItem.addActionListener(this);
         metodoPagamentoItem.addActionListener(this);
         formadorItem.addActionListener(this);
+        tipoDeDocumentoItem.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent event)
@@ -139,7 +142,9 @@ public class MenuPrincipal extends JFrame implements ActionListener
             if(event.getSource() == metodoPagamentoItem)
                 Tabela2.editarNovosItems("MetodoPagamento.tab","Novo Metodo de Pagamento");
             
-            else if(event.getSource() == sairItem)
+                if(event.getSource() == tipoDeDocumentoItem)
+                    Tabela2.editarNovosItems("TipoDeDocumento.tab", "Novo Documento");
+                else if(event.getSource() == sairItem)
             dispose();
     }
 

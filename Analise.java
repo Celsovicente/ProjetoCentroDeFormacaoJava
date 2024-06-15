@@ -23,11 +23,13 @@ o progresso dos cursos e gerir os pagamentos dentro de um centro de formação p
 - FormandoModelo
     int id
     String nome
-    String tipo_documento
-    String numero_documento
+    String tipoDocumento
+    String numeroDocumento
     String dataNascimento
     String nacionalidade
-    String estadoCivil
+    String provincia
+    String municipio
+    String comuna
     String genero
     String telefone
     String email
@@ -58,9 +60,15 @@ o progresso dos cursos e gerir os pagamentos dentro de um centro de formação p
 - Cursos.tab
 - MetodosPagamento.tab
 - Nacionalidades.tab
-- EstadoCivil.tab
+- Municipio.tab
+- Comuna.tab
+- TipoDocumento.tab
 
-6. Diversos
-6.1 - Implementação: Java Swing
-6.2 - IDE: Notepad++
+6 Listagem Geral
+listagem por id
+listagem por Curso
+
+7. Diversos
+7.1 - Implementação: Java Swing
+7.2 - IDE: Notepad++
 */ 
