@@ -27,9 +27,6 @@ o progresso dos cursos e gerir os pagamentos dentro de um centro de formação p
     String numeroDocumento
     String dataNascimento
     String nacionalidade
-    String provincia
-    String municipio
-    String comuna
     String genero
     String telefone
     String email

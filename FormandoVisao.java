@@ -22,6 +22,7 @@ public class FormandoVisao extends JFrame
     public FormandoVisao()
     {
         super("Cadastro de Novos Formandos");
+        definirTema();
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
@@ -29,6 +30,19 @@ public class FormandoVisao extends JFrame
        //setSize(500, 500);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public void definirTema() 
+    {
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            }
     }
 
     // criando um painel centro
@@ -78,7 +92,7 @@ public class FormandoVisao extends JFrame
             // adiconando a 6 linha
             add(new JLabel("Telefone"));
             add(telefoneJTF = new JTextField());
-            add(new JLabel("email"));
+            add(new JLabel("Email"));
             add(emailJTF = new JTextField());
 
 
@@ -111,11 +125,12 @@ public class FormandoVisao extends JFrame
         }
 
     //funcao para definir o tema de fundo
-        public void definirTema() 
+    //definirTema();
+     /*   public void definirTema() 
         {
             try {
                 for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Window".equals(info.getName())) {
+                    if ("Nimbus".equals(info.getName())) {
                         UIManager.setLookAndFeel(info.getClassName());
                         break;
                     }
@@ -123,6 +138,7 @@ public class FormandoVisao extends JFrame
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
                 }
         }
+                */
     }
     
 }
