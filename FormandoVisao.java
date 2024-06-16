@@ -50,10 +50,11 @@ public class FormandoVisao extends JFrame
     {   
         private JTextField idJTF, nomeJTF, numeroDocumentoJTF, dataNascimentoJTF, telefoneJTF, emailJTF ;
         private JComboBox tipoDocumentoJCB, nacionalidadeJCB, generoJCB;
-        private JComboBoxPersonal telefoneCJB, emailJCB, provinciaJCB, municipioJCB, comunaJCB;
+        private JComboBoxPersonal provinciaJCB, municipioJCB, comunaJCB;
         private JComboBoxTabela3_Tabela3 proviMunCom;
-        private String[] generoArray = {"Maculino", "Feminino"};
-        
+        private String[] generoArray = {"Masculino", "Feminino"};
+        JTextFieldData txtData;
+
         public PainelCentro()
         {
             setLayout(new GridLayout(6, 4));
@@ -79,28 +80,101 @@ public class FormandoVisao extends JFrame
 
             //adicionando a 4 linha
             add(new JLabel("Provincia"));
-            add(provinciaJCB = proviMunCom.getComboBoxFather());
+            add(provinciaJCB = proviMunCom.getComboBoxFather() );
             add(new JLabel("Municipio"));
-            add(municipioJCB = proviMunCom.getComboBoxSun());
+            add(municipioJCB = proviMunCom.getComboBoxSun() );
 
             //adicionando a 5 linha
             add(new JLabel("Comuna"));
-            add(comunaJCB = proviMunCom.getComboBoxNeto());
+            add(comunaJCB = proviMunCom.getComboBoxNeto() );
             add(new JLabel("Data de Nascimento"));
-            add(dataNascimentoJTF = new JTextField());
+            JPanel painelData = new JPanel( new GridLayout(1, 1) );
+			txtData = new JTextFieldData("Data de Nascimento");
+			painelData.add( txtData.getDTestField() );
+			painelData.add( txtData.getDButton() );
+			add(painelData);
 
             // adiconando a 6 linha
             add(new JLabel("Telefone"));
             add(telefoneJTF = new JTextField());
             add(new JLabel("Email"));
             add(emailJTF = new JTextField());
-
-
         }
 
-    }
+        //metodos getters
+        public int getId()
+        {
+            return Integer.parseInt(idJTF.getText().trim());
+        }
 
-    // criando um painel sul
+        public String getNome()
+        {
+            return nomeJTF.getText().trim();
+        }
+
+        public String getNumeroDocumento()
+        {
+            return numeroDocumentoJTF.getText().trim();
+        }
+         
+        public String getDataNascimento()
+        {
+            return txtData.getDTestField().getText();
+        } 
+
+        public String getTelefone()
+        {
+            return telefoneJTF.getText().trim();
+        }
+
+        public String getEmail()
+        {
+            return emailJTF.getText().trim();
+        }
+
+        public String getTipoDocumento()
+        {
+            return String.valueOf(tipoDocumentoJCB.getSelectedItem());
+        }
+
+        public String getNacionalidade()
+        {
+            return String.valueOf(nacionalidadeJCB.getSelectedItem());
+        }
+
+        public String getGenero()
+        {
+            return String.valueOf(generoJCB.getSelectedItem());
+        }
+
+        public String getProvincia()
+        {
+            return String.valueOf(provinciaJCB.getSelectedItem());
+        }
+
+        public String getMunicipio()
+        {
+            return String.valueOf(municipioJCB.getSelectedItem());
+        }
+
+        public String getComunua()
+        {
+            return String.valueOf(comunaJCB.getSelectedItem());
+        }
+        //metodo para salvar os dados
+        public void salvar()
+        {
+            FormandoModelo modelo = new FormandoModelo(getId(), getNome(), getTipoDocumento(), 
+            getNumeroDocumento(), getTelefone(), getEmail(), getGenero(), getNacionalidade(), getProvincia(),
+            getMunicipio(), getComunua(), getDataNascimento());
+
+            JOptionPane.showMessageDialog(null, modelo.toString());
+        }
+
+        // criando um painel sul
+
+    }   
+    
     class PainelSul extends JPanel implements ActionListener
     {
         JButton salvarJB, cancelarJB;
@@ -118,7 +192,7 @@ public class FormandoVisao extends JFrame
         public void actionPerformed(ActionEvent event)
         {
             if(event.getSource() == salvarJB)
-                JOptionPane.showMessageDialog(null, "Salvar");
+                centro.salvar();
             else
                 dispose();
 

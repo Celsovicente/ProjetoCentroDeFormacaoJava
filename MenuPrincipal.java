@@ -3,7 +3,7 @@
 Tema: Gestão de um Centro de Formação Profissional
 Nome: Celso Vicente
 Numero: 33019
-Ficheiro: CentroFormacao.java
+Ficheiro: MenuPrincipal.java
 Data: 20.05.2024
 ---------------------------------------------------
 */
@@ -108,6 +108,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
         sairItem.addActionListener(this);
         nacionalidadeItem.addActionListener(this);
         provinciaItem.addActionListener(this);
+        municipioItem.addActionListener(this);
         comunaItem.addActionListener(this);
         cursoItem.addActionListener(this);
         metodoPagamentoItem.addActionListener(this);
