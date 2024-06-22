@@ -1,17 +1,25 @@
+/*--------------------------------------------------
+Tema: Gestão de um Centro de Formação Profissional
+Nome: Celso Vicente
+Numero: 33019
+Ficheiro: FormandoModelo.java
+Data: 19.06.2024
+---------------------------------------------------*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import SwingComponents.*;
-import SwingComponents.DataModelo;
-import SwingComponents.StringBufferModelo;
 import Calendario.*;
+import java.io.*;
+import javax.swing.UIManager.*;
 
-public class FormandoModelo 
+public class FormandoModelo implements RegistGeneric
 {
-    int id;
-    StringBufferModelo nome, tipoDocumento, numeroDocumento, provincia, municipio, comuna;
-    StringBufferModelo telefone, email, genero, nacionalidade;
-    DataModelo dataNascimento;
+   private int id;
+    private StringBufferModelo nome, tipoDocumento, numeroDocumento, provincia, municipio, comuna;
+    private StringBufferModelo telefone, email, genero, nacionalidade;
+    private DataModelo dataNascimento;
 
     //Construtor Vazio
     public FormandoModelo()
@@ -23,8 +31,8 @@ public class FormandoModelo
         provincia = new StringBufferModelo("", 20);
         municipio = new StringBufferModelo("", 20);
         comuna = new StringBufferModelo("", 20);
-        telefone = new StringBufferModelo("", 15);
-        email = new StringBufferModelo("", 30);
+        telefone = new StringBufferModelo("", 10);
+        email = new StringBufferModelo("", 50);
         genero = new StringBufferModelo("", 10);
         nacionalidade = new StringBufferModelo("", 20);
         dataNascimento = new DataModelo();
@@ -41,8 +49,8 @@ public class FormandoModelo
         this.provincia = new StringBufferModelo(provincia, 20);
         this.municipio = new StringBufferModelo(municipio, 20);
         this.comuna = new StringBufferModelo(comuna, 20);
-        this.telefone = new StringBufferModelo(telefone, 15);
-        this.email = new StringBufferModelo(email, 30);
+        this.telefone = new StringBufferModelo(telefone, 10);
+        this.email = new StringBufferModelo(email, 50);
         this.genero = new StringBufferModelo(genero, 10);
         this.nacionalidade = new StringBufferModelo(nacionalidade, 20);
         this.dataNascimento = new DataModelo(dataNascimento);
@@ -115,19 +123,19 @@ public class FormandoModelo
         this.id = id;
     }
 
-    public void setNome(String nome)
+    public void setNome(String novoNome)
     {
-        this.nome = new StringBufferModelo(nome, 50);
+        nome = new StringBufferModelo(novoNome, 50);
     }
 
-    public void setTipoDocumento(String tipoDocumento)
+    public void setTipoDocumento(String novoTipoDocumento)
     {
-        this.tipoDocumento = new StringBufferModelo(tipoDocumento, 50);
+        tipoDocumento = new StringBufferModelo(novoTipoDocumento, 50);
     }
         
-    public void setNumeroDocumento(String numeroDocumento)
+    public void setNumeroDocumento(String novoNumeroDocumento)
     {
-        this.numeroDocumento = new StringBufferModelo(numeroDocumento, 20);
+        numeroDocumento = new StringBufferModelo(novoNumeroDocumento, 20);
     }
 
     public void setDataNascimento(String data)
@@ -135,39 +143,39 @@ public class FormandoModelo
         dataNascimento = new DataModelo(data);
     }
 
-    public void setGenero(String genero)
+    public void setGenero(String novoGenero)
     {
-        this.genero = new  StringBufferModelo(genero, 10);
+        genero = new  StringBufferModelo(novoGenero, 10);
     }
 
-    public void setTelefone(String telefone)
+    public void setTelefone(String novoTelefone)
     {
-        this.telefone = new StringBufferModelo(telefone, 15);
+        telefone = new StringBufferModelo(novoTelefone, 10);
     }
 
-    public void setEmail(String email)
+    public void setEmail(String novoEmail)
     {
-        this.email = new StringBufferModelo(email, 30);
+        email = new StringBufferModelo(novoEmail, 50);
     }
 
-    public void setNacionalidade(String nacionalidade)
+    public void setNacionalidade(String novaNacionalidade)
     {
-        this.nacionalidade = new StringBufferModelo(nacionalidade, 20);
+        nacionalidade = new StringBufferModelo(novaNacionalidade, 20);
     }
 
-    public void setProvincia(String provincia)
+    public void setProvincia(String novaProvincia)
     {
-          this.provincia = new StringBufferModelo(provincia, 20);
+          provincia = new StringBufferModelo(novaProvincia, 20);
     }
 
-    public void setMunicipio(String municipio)
+    public void setMunicipio(String novoMunicipio)
     {
-        this.municipio = new StringBufferModelo(municipio, 20);
+        municipio = new StringBufferModelo(novoMunicipio, 20);
     }
 
-    public void setComuna(String comuna)
+    public void setComuna(String novaComuna)
     {
-        this.comuna = new StringBufferModelo(comuna, 20);
+        comuna = new StringBufferModelo(novaComuna, 20);
     }
     
 
@@ -179,14 +187,105 @@ public class FormandoModelo
         dados += "Nome: " + getNome() + "\n";
         dados += "Tipo de Documento: " + getTipoDocumento() + "\n";
         dados += "Numero do Documento:" + getNumeroDocumento() + "\n";
-        dados += "Telefone: " + getTelefone() + "\n";
-        dados += "Email: " + getEmail() + "\n";
-        dados += "Genero: " + getGenero() + "\n";
-        dados += "Nacionalidade: " + getNacionalidade() + "\n";
-        dados += "Provincia: " + getProvincia() + "\n";
-        dados += "Municipio: " + getMunicipio() + "\n";
-        dados += "Comuna: " + getComuna() + "\n";
-        dados += "Data de Nascimento: " + getDataNascimento() + "\n";
+        dados += "Genero: " + getTelefone() + "\n";
+        dados += "Nacionalidade: " + getEmail() + "\n";
+        dados += "Email: " + getGenero() + "\n";
+        dados += "Provincia: " + getNacionalidade() + "\n";
+        dados += "Municipio: " + getProvincia() + "\n";
+        dados += "Comuna: " + getMunicipio() + "\n";
+        dados += "Data de Nascimento:" + getComuna() + "\n";
+        dados += "Telefone: " + getDataNascimento() + "\n";
         return dados;
+    }
+
+    // // metodo toString
+    // public String toString()
+    // {
+    //     String dados = "Dados do Formando Modelo\n\n";
+    //     dados += "Id: " + getId() + "\n";
+    //     dados += "Nome: " + getNome() + "\n";
+    //     dados += "Tipo de Documento: " + getTipoDocumento() + "\n";
+    //     dados += "Numero do Documento:" + getNumeroDocumento() + "\n";
+    //     dados += "Telefone: " + getTelefone() + "\n";
+    //     dados += "Email: " + getEmail() + "\n";
+    //     dados += "Genero: " + getGenero() + "\n";
+    //     dados += "Nacionalidade: " + getNacionalidade() + "\n";
+    //     dados += "Provincia: " + getProvincia() + "\n";
+    //     dados += "Municipio: " + getMunicipio() + "\n";
+    //     dados += "Comuna: " + getComuna() + "\n";
+    //     dados += "Data de Nascimento: " + getDataNascimento() + "\n";
+    //     return dados;
+    // }
+
+
+    //calcular o sizeof
+    public long sizeof()
+    {
+        try 
+        {
+            // a soma dos bytes das strings com o id e a data
+            return 270 * 2 + 4 + 12;                        
+        }
+        catch (Exception e) 
+        {
+            return 0;
+        }
+    }
+
+    //metodo para escrever no ficheiro
+    public void write(RandomAccessFile stream)
+    {
+        try 
+        {
+            stream.writeInt(id);
+            nome.write(stream);
+            tipoDocumento.write(stream);
+            numeroDocumento.write(stream);
+            provincia.write(stream);
+            municipio.write(stream);
+            comuna.write(stream);
+            telefone.write(stream);
+            email.write(stream);
+            genero.write(stream);
+            nacionalidade.write(stream);
+            dataNascimento.write(stream);
+        } 
+        
+        catch (Exception e)      
+        {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro ao escrever no ficheiro!");
+        }
+    }
+
+    public void read(RandomAccessFile stream)
+    {
+        try 
+        {
+            id = stream.readInt();
+            nome.read(stream);
+            tipoDocumento.read(stream);
+            numeroDocumento.read(stream);
+            provincia.read(stream);
+            municipio.read(stream);
+            comuna.read(stream);
+            telefone.read(stream);
+            email.read(stream);
+            genero.read(stream);
+            nacionalidade.read(stream);
+            dataNascimento.read(stream);
+        } 
+        
+        catch (Exception e)      
+        {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro ler o ficheiro!");
+        }
+    }
+
+    public void salvar()
+    {
+        FormandoFile file = new FormandoFile();
+        file.salvarDados(this);
     }
 }

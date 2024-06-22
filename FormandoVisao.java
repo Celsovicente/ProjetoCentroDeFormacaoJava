@@ -2,17 +2,16 @@
 Tema: Gestão de um Centro de Formação Profissional
 Nome: Celso Vicente
 Numero: 33019
-Ficheiro: CentroFormacao.java
+Ficheiro: FormandoVisao.java
 Data: 12.06.2024
 ---------------------------------------------------*/
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import SwingComponents.*;
-import SwingComponents.JComboBoxPersonal.*;
-import SwingComponents.JComboBoxTabela3_Tabela3.*;
 import Calendario.*;
 import javax.swing.UIManager.*;
+
 
 public class FormandoVisao extends JFrame
 {
@@ -23,6 +22,12 @@ public class FormandoVisao extends JFrame
     {
         super("Cadastro de Novos Formandos");
         definirTema();
+
+        JPanel painelNorte = new JPanel();
+        JLabel lbBanner = new JLabel(new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\images.jpg"));
+        painelNorte.add(lbBanner);
+
+        getContentPane().add(painelNorte, BorderLayout.NORTH);
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
@@ -30,19 +35,6 @@ public class FormandoVisao extends JFrame
        //setSize(500, 500);
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    public void definirTema() 
-    {
-        try {
-            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            }
     }
 
     // criando um painel centro
@@ -89,9 +81,9 @@ public class FormandoVisao extends JFrame
             add(comunaJCB = proviMunCom.getComboBoxNeto() );
             add(new JLabel("Data de Nascimento"));
             JPanel painelData = new JPanel( new GridLayout(1, 1) );
-			txtData = new JTextFieldData("Data de Nascimento");
-			painelData.add( txtData.getDTestField() );
-			painelData.add( txtData.getDButton() );
+			txtData = new JTextFieldData("Data ?");
+			painelData.add( txtData.getDTestField());
+			painelData.add( txtData.getDButton());
 			add(painelData);
 
             // adiconando a 6 linha
@@ -157,31 +149,44 @@ public class FormandoVisao extends JFrame
             return String.valueOf(municipioJCB.getSelectedItem());
         }
 
-        public String getComunua()
+        public String getComuna()
         {
             return String.valueOf(comunaJCB.getSelectedItem());
         }
         //metodo para salvar os dados
         public void salvar()
         {
-            FormandoModelo modelo = new FormandoModelo(getId(), getNome(), getTipoDocumento(), 
-            getNumeroDocumento(), getTelefone(), getEmail(), getGenero(), getNacionalidade(), getProvincia(),
-            getMunicipio(), getComunua(), getDataNascimento());
+            FormandoModelo modelo = new FormandoModelo(
+                getId(), 
+                getNome(), 
+                getTipoDocumento(), 
+                getNumeroDocumento(), 
+                getTelefone(), 
+                getEmail(), 
+                getGenero(), 
+                getNacionalidade(), 
+                getProvincia(),
+                getMunicipio(), 
+                getComuna(), 
+                getDataNascimento()
+                );
 
             JOptionPane.showMessageDialog(null, modelo.toString());
+
+            modelo.salvar();
         }
 
-        // criando um painel sul
 
     }   
-    
+
+    // criando um painel sul
     class PainelSul extends JPanel implements ActionListener
     {
         JButton salvarJB, cancelarJB;
         public PainelSul()
         {
-            add(salvarJB = new  JButton("Salvar"));
-            add(cancelarJB = new JButton("Cancelar"));
+            add(salvarJB = new  JButton("Salvar", new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\save24.PNG")));
+            add(cancelarJB = new JButton("Cancelar", new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\cancel24.PNG")));
             
             salvarJB.addActionListener(this);
             cancelarJB.addActionListener(this);
@@ -198,21 +203,22 @@ public class FormandoVisao extends JFrame
 
         }
 
+    }
     //funcao para definir o tema de fundo
     //definirTema();
-     /*   public void definirTema() 
-        {
-            try {
-                for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                }
-        }
-                */
-    }
+         public void definirTema() 
+         {
+             try {
+                 for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                     if ("Nimbus".equals(info.getName())) {
+                         UIManager.setLookAndFeel(info.getClassName());
+                         break;
+                     }
+                 }
+             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                 }
+         }
+                
+
     
 }
