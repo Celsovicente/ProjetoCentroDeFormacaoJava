@@ -7,7 +7,6 @@ Ficheiro: MenuPrincipal.java
 Data: 20.05.2024
 ---------------------------------------------------
 */
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -18,9 +17,10 @@ public class MenuPrincipal extends JFrame implements ActionListener
 {
     private JMenuBar menuBar;
     
-    private JMenu ficheiroMenu, operacoesMenu, ajudaMenu, tabelasMenu;
+    private JMenu ficheiroMenu, operacoesMenu, ajudaMenu, tabelasMenu, listagensMenu;
     private JMenuItem  nacionalidadeItem, provinciaItem, municipioItem, comunaItem, 
     cursoItem, formadorItem, metodoPagamentoItem, tipoDeDocumentoItem;
+    private JMenuItem listarFormandoItem, pesquisarFormandoItem;
     
     private JMenuItem registarInscricaoItem, registarSaidaItem;
     private JMenuItem novoFormandoItem, editarFormandoItem, eliminarFormandoItem, sairItem;
@@ -32,15 +32,6 @@ public class MenuPrincipal extends JFrame implements ActionListener
         instanciarObjectos();
         setJMenuBar(menuBar);
 
-        ficheiroMenu = new JMenu("Ficheiro");
-        ficheiroMenu.setMnemonic('F');
-        operacoesMenu = new JMenu("Operacoes");
-        operacoesMenu.setMnemonic('O');
-        tabelasMenu = new JMenu("Tabelas");
-        tabelasMenu.setMnemonic('T');
-        ajudaMenu = new JMenu("Ajuda");
-        ajudaMenu.setMnemonic('A');
-
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -49,6 +40,17 @@ public class MenuPrincipal extends JFrame implements ActionListener
     public void instanciarObjectos()
     {
         menuBar = new JMenuBar();
+        
+        ficheiroMenu = new JMenu("Ficheiro");
+        ficheiroMenu.setMnemonic('F');
+        listagensMenu = new JMenu("Listagem/Pesquisa");
+        listagensMenu.setMnemonic('L');
+        operacoesMenu = new JMenu("Operacoes");
+        operacoesMenu.setMnemonic('O');
+        tabelasMenu = new JMenu("Tabelas");
+        tabelasMenu.setMnemonic('T');
+        ajudaMenu = new JMenu("Ajuda");
+        ajudaMenu.setMnemonic('A');
 
         // instanciando as operacoes principais do sistema
         ficheiroMenu = new JMenu("Ficheiro");
@@ -74,6 +76,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
         // adicionando os menus na tela principal
         menuBar.add(ficheiroMenu);
         menuBar.add(operacoesMenu);
+        menuBar.add(listagensMenu);
         menuBar.add(tabelasMenu);
         menuBar.add(ajudaMenu);
 
@@ -103,17 +106,25 @@ public class MenuPrincipal extends JFrame implements ActionListener
         operacoesMenu.add(registarInscricaoItem);
         operacoesMenu.add(registarSaidaItem);
 
+        
+        //itens do menu listar
+        listagensMenu.add(listarFormandoItem = new JMenuItem("Listar Formandos"));
+        listagensMenu.addSeparator();
+        listagensMenu.add(pesquisarFormandoItem = new JMenuItem("Pesquisar Formandos"));
+
+
         // adicionando eventos listeners
         novoFormandoItem.addActionListener(this);
         sairItem.addActionListener(this);
         nacionalidadeItem.addActionListener(this);
+        listarFormandoItem.addActionListener(this); 
         provinciaItem.addActionListener(this);
-        municipioItem.addActionListener(this);
         comunaItem.addActionListener(this);
         cursoItem.addActionListener(this);
         metodoPagamentoItem.addActionListener(this);
         formadorItem.addActionListener(this);
         tipoDeDocumentoItem.addActionListener(this);
+        pesquisarFormandoItem.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent event)
@@ -122,6 +133,10 @@ public class MenuPrincipal extends JFrame implements ActionListener
         if(event.getSource() == novoFormandoItem)
             new FormandoVisao();
         
+        if(event.getSource() == listarFormandoItem)
+            FormandoFile.listarFormandos();
+        if(event.getSource() == pesquisarFormandoItem)
+            new PesquisarFormando();
             if(event.getSource() == nacionalidadeItem)
                 Tabela2.editarNovosItems("Nacionalidade.tab", "Nova Nacionalidade");
         

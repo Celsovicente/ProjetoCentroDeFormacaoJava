@@ -46,6 +46,7 @@ public class FormandoVisao extends JFrame
         private JComboBoxTabela3_Tabela3 proviMunCom;
         private String[] generoArray = {"Masculino", "Feminino"};
         JTextFieldData txtData;
+        private FormandoFile formandoFile = new FormandoFile();
 
         public PainelCentro()
         {
@@ -55,6 +56,8 @@ public class FormandoVisao extends JFrame
             // adicionando a 1 linha 
             add(new JLabel("Id"));
             add(idJTF = new JTextField());
+            idJTF.setText("0000" +formandoFile.getProximoCodigo());
+            idJTF.setFocusable(false);
             add(new JLabel("Nome"));
             add(nomeJTF = new JTextField());
 
@@ -174,6 +177,7 @@ public class FormandoVisao extends JFrame
             JOptionPane.showMessageDialog(null, modelo.toString());
 
             modelo.salvar();
+            dispose();
         }
 
 
@@ -204,6 +208,7 @@ public class FormandoVisao extends JFrame
         }
 
     }
+    
     //funcao para definir o tema de fundo
     //definirTema();
          public void definirTema() 

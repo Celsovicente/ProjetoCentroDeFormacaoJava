@@ -64,6 +64,7 @@ o progresso dos cursos e gerir os pagamentos dentro de um centro de formação p
 6 Listagem Geral
 listagem por id
 listagem por Curso
+listagens por nome
 
 7. Diversos
 7.1 - Implementação: Java Swing
