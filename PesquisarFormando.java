@@ -21,6 +21,10 @@ public class PesquisarFormando extends JFrame
         super("Pesquisas");
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.NORTH);
+
+        pack();
+		setLocationRelativeTo(null);
+		setVisible(true);	
     }
 
     class PainelCentro extends JPanel 
@@ -31,11 +35,6 @@ public class PesquisarFormando extends JFrame
                 setLayout(new GridLayout(1, 2));
                 add(new JLabel("Escolha o nome procurado"));
                 add(nomesJCB = new JComboBox(FormandoFile.getAllNames()));
-            }
-
-            public String getAllNames()
-            {
-                return String.valueOf(nomesJCB.getSelectedItem());
             }
 
             public String getNomeProcurado()
@@ -50,7 +49,7 @@ public class PesquisarFormando extends JFrame
         JButton pesquisarJB, cancelarJB;
         public PainelSul()
         {
-            add(pesquisarJB = new  JButton("Salvar", new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\search32.PNG")));
+            add(pesquisarJB = new  JButton("Pesquisar", new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\search32.PNG")));
             add(cancelarJB = new JButton("Cancelar", new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\cancel24.PNG")));
             
             pesquisarJB.addActionListener(this);
