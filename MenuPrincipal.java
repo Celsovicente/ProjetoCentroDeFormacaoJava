@@ -25,9 +25,9 @@ public class MenuPrincipal extends JFrame implements ActionListener
     private JMenuItem registarInscricaoItem, registarSaidaItem;
     private JMenuItem novoFormandoItem, editarFormandoItem, eliminarFormandoItem, sairItem;
 
-    public MenuPrincipal()
+    public MenuPrincipal(String user)
     {
-        super("Menu Principal");
+        super("Menu Principal | User" +user);
 
         instanciarObjectos();
         setJMenuBar(menuBar);
