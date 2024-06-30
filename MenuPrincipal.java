@@ -27,7 +27,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
 
     public MenuPrincipal(String user)
     {
-        super("Menu Principal | User" +user);
+        super("Menu Principal | User: " + user);
 
         instanciarObjectos();
         setJMenuBar(menuBar);
@@ -137,36 +137,36 @@ public class MenuPrincipal extends JFrame implements ActionListener
             FormandoFile.listarFormandos();
         if(event.getSource() == pesquisarFormandoItem)
             new PesquisarFormando();
-            if(event.getSource() == nacionalidadeItem)
-                Tabela2.editarNovosItems("Nacionalidade.tab", "Nova Nacionalidade");
+        if(event.getSource() == nacionalidadeItem)
+            Tabela2.editarNovosItems("Nacionalidade.tab", "Nova Nacionalidade");
         
-            if(event.getSource() == provinciaItem)
-                Tabela2.editarNovosItems("Provincia.tab","Nova Provincia");
+        if(event.getSource() == provinciaItem)
+            Tabela2.editarNovosItems("Provincia.tab","Nova Provincia");
 
-            if(event.getSource() == municipioItem)
-                Tabela3_2.editarNovosItems("Provincia.tab", "Municipio.tab", "Provincia", "Municipio", "Novo Municipio");
+        if(event.getSource() == municipioItem)
+            Tabela3_2.editarNovosItems("Provincia.tab", "Municipio.tab", "Provincia", "Municipio", "Novo Municipio");
         
-            if(event.getSource() == comunaItem)
+        if(event.getSource() == comunaItem)
             Tabela3_3.editarNovosItems("Provincia.tab", "Municipio.tab", "Comunas.tab", "Provincias", "Municipios", "Comunas", "Nova Comuna");
         
-            if(event.getSource() == cursoItem)
-                Tabela2.editarNovosItems("Curso.tab", "Novo Curso");
+        if(event.getSource() == cursoItem)
+            Tabela2.editarNovosItems("Curso.tab", "Novo Curso");
         
-            if(event.getSource() == formadorItem)
-                Tabela2.editarNovosItems("Formador.tab", "Novo Formador");
+        if(event.getSource() == formadorItem)
+            Tabela2.editarNovosItems("Formador.tab", "Novo Formador");
         
-            if(event.getSource() == metodoPagamentoItem)
-                Tabela2.editarNovosItems("MetodoPagamento.tab","Novo Metodo de Pagamento");
+        if(event.getSource() == metodoPagamentoItem)
+            Tabela2.editarNovosItems("MetodoPagamento.tab","Novo Metodo de Pagamento");
             
-                if(event.getSource() == tipoDeDocumentoItem)
-                    Tabela2.editarNovosItems("TipoDeDocumento.tab", "Novo Documento");
-                else if(event.getSource() == sairItem)
+        if(event.getSource() == tipoDeDocumentoItem)
+            Tabela2.editarNovosItems("TipoDeDocumento.tab", "Novo Documento");
+        else if(event.getSource() == sairItem)
             dispose();
     }
 
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         Vector_Tabelas.inic();
-        new MenuPrincipal();
+        new MenuPrincipal("Usuario Padrao");  
     }
 }

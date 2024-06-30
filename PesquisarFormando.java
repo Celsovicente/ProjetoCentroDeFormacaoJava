@@ -27,14 +27,47 @@ public class PesquisarFormando extends JFrame
 		setVisible(true);	
     }
 
-    class PainelCentro extends JPanel 
+    class PainelCentro extends JPanel implements ActionListener
     {
             JComboBox nomesJCB;
+            JTextField numeroDocumentoJTF;
+            ButtonGroup grupo;
+            JRadioButton pesquisarPorDocumento, pesquisarPorNome;
+
             public PainelCentro()
             {
-                setLayout(new GridLayout(1, 2));
+                setLayout(new GridLayout(3, 2));
+                
+                grupo = new ButtonGroup();
+                add(pesquisarPorNome = new JRadioButton("Pesquisar por Nome", true));
+                add(pesquisarPorDocumento = new JRadioButton("Pesquisar por Documento"));
+                
+                grupo.add(pesquisarPorNome);
+                grupo.add(pesquisarPorDocumento);
+
                 add(new JLabel("Escolha o nome procurado"));
                 add(nomesJCB = new JComboBox(FormandoFile.getAllNames()));
+
+                add(new JLabel("Digite o numero do Documento Procurado"));
+                add(numeroDocumentoJTF = new JTextField());
+                numeroDocumentoJTF.setEnabled(false);
+
+                pesquisarPorNome.addActionListener(this);
+                pesquisarPorDocumento.addActionListener(this);
+            }
+
+            public void actionPerformed(ActionEvent event)
+            {
+                if(event.getSource() == pesquisarPorDocumento)
+                {
+                    numeroDocumentoJTF.setEnabled(true);
+                    nomesJCB.setEnabled(false);
+                }
+                else
+                {
+                    numeroDocumentoJTF.setEnabled(false);
+                    nomesJCB.setEnabled(true);
+                }
             }
 
             public String getNomeProcurado()
@@ -42,6 +75,18 @@ public class PesquisarFormando extends JFrame
                 return String.valueOf(nomesJCB.getSelectedItem());
             }
 
+            public String getNumeroDocumentoProcurado()
+            {
+                return numeroDocumentoJTF.getText().trim();
+            }
+
+            public int getTipoDePesquisa()
+            {
+                if(pesquisarPorNome.isSelected())
+                    return 1;
+                else
+                    return 2;
+            }
     }
 
     class PainelSul extends JPanel implements ActionListener
@@ -60,7 +105,16 @@ public class PesquisarFormando extends JFrame
         public void actionPerformed(ActionEvent event)
         {
             if(event.getSource() == pesquisarJB)
-                FormandoFile.pesquisarFormandoPorNome(centro.getNomeProcurado());
+                {
+                    if(centro.getTipoDePesquisa() == 1)
+                        FormandoFile.pesquisarFormandoPorNome(centro.getNomeProcurado());
+                    else if(centro.getTipoDePesquisa() == 2)
+                    {
+                        FormandoFile file = new FormandoFile();
+                        file.pesquisarFormandoPorDocumento(centro.getNumeroDocumentoProcurado());
+                    }
+                }
+
             else
                 dispose();
         }

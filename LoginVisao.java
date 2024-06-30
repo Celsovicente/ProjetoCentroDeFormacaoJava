@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import SwingComponents.*;
+import SwingComponents.MenuPrincipal;
 import Calendario.*;
 import javax.swing.UIManager.*;
 import java.io.*;
@@ -22,34 +23,37 @@ public class LoginVisao extends JFrame
     public LoginVisao()
     {
         super("Tela de Boas Vindas");
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
 
         JPanel painelNorte = new JPanel();
-        JLabel lbImagem = new JLabel(new ImageIcon(""));
+        JLabel lbImagem = new JLabel(new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\images.jpg"));
         painelNorte.add(lbImagem);
-        getContentPane().add(painelNorte , BorderLayout.NORTH);
-        getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
-        getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
-
+        
+		getContentPane().add(painelNorte, BorderLayout.NORTH);
+		getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
+		getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
+				
+		//setSize(400, 400);
+        pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
     }
     
     class PainelCentro extends JPanel 
     {
         private JTextField userJTF;
         private JPasswordField passwordJTF;
-        private String correctUser = "33019";
-        private String correctPassword = "ucan";
+        private String correctUser = "1000033019", correctPassword = "ucan";
 
         public PainelCentro()
         {
             setLayout(new GridLayout(2,2));
-            add(new JLabel("UserName: "));
+            add(new JLabel("Username: "));
             add(userJTF = new JTextField());
 
             add(new JLabel("Password: "));
             add(passwordJTF = new JPasswordField());
+            //funcao para alterar o caracter da palavra passe
+            passwordJTF.setEchoChar('#');
         }
 
         public String getUser()
@@ -64,16 +68,17 @@ public class LoginVisao extends JFrame
 
         public boolean loginValido()
         {
-            if(getUser().equals(correctUser) && getPassword().equals(passwordJTF))
+            if(getUser().equals(correctUser) && getPassword().equals(correctPassword))
                 return true;
-            else
-                return false;
+
+            return false;
         }
     }
 
     class PainelSul extends JPanel implements ActionListener
-    {   
-        private JButton entrarJB, sairJB;
+	{
+		private JButton entrarJB, sairJB;
+		
 		public PainelSul()
 		{
 			add( entrarJB = new JButton("Entrar") );
@@ -91,13 +96,16 @@ public class LoginVisao extends JFrame
 				{
 					String user = centro.getUser();					
 					dispose();					
-					//new MenuPrincipal( user );
+					new MenuPrincipal(user);
 				}
 				else
 				{
-                }
-           }
-        }
-    }
+					JOptionPane.showMessageDialog(null, "Login Invalido, tente novamente!", 
+							"Invalid Login", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		
+		}
+	}
 }
 

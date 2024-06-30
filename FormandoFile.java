@@ -84,10 +84,40 @@ public class FormandoFile extends ObjectsFile
 				if (modelo.getNome().equalsIgnoreCase(nomeProcurado) )
 				{
 					JOptionPane.showMessageDialog(null, modelo.toString(),
-                    "Gestão de Um Centro de Formação Profissional", JOptionPane.INFORMATION_MESSAGE);
+                    "Gestao de Um Centro de Formacao Profissional", JOptionPane.INFORMATION_MESSAGE);
 					break;
 				}
 			}
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}		
+	}
+
+    public void pesquisarFormandoPorDocumento(String documentoProcurado)
+	{		
+       // FormandoFile ficheiro = new FormandoFile();
+		FormandoModelo modelo = new FormandoModelo();
+		
+		try
+		{
+			stream.seek(4);
+			
+			for(int i = 0; i < getNregistos(); i++)
+			{
+				modelo.read(stream );
+				// equalsignorecase para desativar o case sensetive
+				if (modelo.getNumeroDocumento().equalsIgnoreCase(documentoProcurado))
+				{
+					JOptionPane.showMessageDialog(null, modelo.toString(),
+                    "Gestao de Um Centro de Formacao Profissional", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+			}
+            JOptionPane.showMessageDialog(null, "Documento nao encontrado",
+                    "File Not Found", JOptionPane.ERROR_MESSAGE);
 			
 		}
 		catch(Exception ex)

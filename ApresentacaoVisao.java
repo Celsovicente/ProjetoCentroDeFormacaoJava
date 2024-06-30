@@ -21,16 +21,17 @@ public class ApresentacaoVisao extends JFrame
     public ApresentacaoVisao()
     {
         super("Tela de Boas Vindas");
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-        setVisible(true);
 
         JPanel painelNorte = new JPanel();
-        JLabel lbImagem = new JLabel(new ImageIcon(""));
+        JLabel lbImagem = new JLabel(new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\images.jpg"));
         painelNorte.add(lbImagem);
         getContentPane().add(painelNorte , BorderLayout.NORTH);
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
+
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
 
     }
     
@@ -43,9 +44,12 @@ public class ApresentacaoVisao extends JFrame
             setLayout(new GridLayout(2,1));
             add(new JScrollPane(areaPrincipal = new JTextArea(80, 40)));
             areaPrincipal.setFocusable(false);
-            areaPrincipal.setText("Seja BenVindo ao Sistema de Gestao de Um Centro de Formacao");
+            areaPrincipal.setText("Seja BenVindo ao Sistema de Gestao de Centro de Formacao\n"
+            + "Este Sistema foi concebido para registrar a inscricao de formandos que queiram fazer cursos no nosso centro\n"+
+            "Este projecto foi criado no ambito da cadeira de Fundamentos de Programacao II, \n" +
+			"no Curso de Engenharia Informatica da UCAN. \n");
 
-            add( concordarJCB = new JCheckBox("concordo com os termos de uso!") );
+            add( concordarJCB = new JCheckBox("Concordo com os termos de uso!") );
 			
 			concordarJCB.addActionListener(this);
 		}
@@ -81,10 +85,13 @@ public class ApresentacaoVisao extends JFrame
             entrarJB.setEnabled(status);
         }
         
-        public void actionPerformed(ActionListener event)
+        public void actionPerformed(ActionEvent event)
         {
             if(event.getSource() == entrarJB)
-                JOptionPane.showMessageDialog(null, "Login");
+            {
+                dispose();
+                new LoginVisao();
+            }
             else
                 dispose();
         }
