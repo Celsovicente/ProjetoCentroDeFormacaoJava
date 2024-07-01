@@ -115,6 +115,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
 
         // adicionando eventos listeners
         novoFormandoItem.addActionListener(this);
+        editarFormandoItem.addActionListener(this);
         sairItem.addActionListener(this);
         nacionalidadeItem.addActionListener(this);
         listarFormandoItem.addActionListener(this); 
@@ -132,7 +133,10 @@ public class MenuPrincipal extends JFrame implements ActionListener
         // criando eventos de clic
         if(event.getSource() == novoFormandoItem)
             new FormandoVisao();
-        
+
+        if(event.getSource() == editarFormandoItem)
+            new EditarFormando();
+
         if(event.getSource() == listarFormandoItem)
             FormandoFile.listarFormandos();
         if(event.getSource() == pesquisarFormandoItem)

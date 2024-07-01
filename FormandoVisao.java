@@ -17,8 +17,8 @@ public class FormandoVisao extends JFrame
 {
     PainelCentro centro;
     PainelSul sul;
-
-    public FormandoVisao()
+    FormandoModelo modelo = new FormandoModelo();
+    public FormandoVisao(boolean alterar)
     {
         super("Cadastro de Novos Formandos");
         definirTema();
@@ -29,7 +29,7 @@ public class FormandoVisao extends JFrame
 
         getContentPane().add(painelNorte, BorderLayout.NORTH);
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
-        getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
+        getContentPane().add(sul = new PainelSul(), BorderLayout.NORTH);
 
         pack();
        //setSize(500, 500);
@@ -56,44 +56,58 @@ public class FormandoVisao extends JFrame
             // adicionando a 1 linha 
             add(new JLabel("Id"));
             add(idJTF = new JTextField());
-            idJTF.setText("0000" +formandoFile.getProximoCodigo());
+            idJTF.setText("000" +modelo.getId());
             idJTF.setFocusable(false);
             add(new JLabel("Nome"));
             add(nomeJTF = new JTextField());
+            nomeJTF.setText(modelo.getNome());
 
             // adicionando a 2 linha
             add(new JLabel("Tipo de Documento"));
             add(tipoDocumentoJCB = UInterfaceBox.createJComboBoxPersonalTab2("TipoDeDocumento.tab"));
+            tipoDocumentoJCB.setSelectedItem(modelo.getTipoDocumento());
             add(new JLabel("Numero do Documento"));
             add(numeroDocumentoJTF = new JTextField());
+            numeroDocumentoJTF.setText(modelo.getNumeroDocumento());
 
             //adicionando a 3 linha
             add(new JLabel("Nacionalidade"));
             add(nacionalidadeJCB = UInterfaceBox.createJComboBoxPersonalTab2("Nacionalidade.tab"));
+            nacionalidadeJCB.setSelectedItem(modelo.getNacionalidade());
+
             add(new JLabel("Genero"));
             add(generoJCB = new JComboBox(generoArray));
+            generoJCB.setSelectedItem(modelo.getGenero());
 
             //adicionando a 4 linha
             add(new JLabel("Provincia"));
             add(provinciaJCB = proviMunCom.getComboBoxFather() );
+            provinciaJCB.setSelectedItem(modelo.getProvincia());
+
             add(new JLabel("Municipio"));
             add(municipioJCB = proviMunCom.getComboBoxSun() );
+            municipioJCB.setSelectedItem(modelo.getMunicipio());
 
             //adicionando a 5 linha
             add(new JLabel("Comuna"));
-            add(comunaJCB = proviMunCom.getComboBoxNeto() );
+            add(comunaJCB = proviMunCom.getComboBoxNeto());
+            comunaJCB.setSelectedItem(modelo.getComuna());
+
             add(new JLabel("Data de Nascimento"));
             JPanel painelData = new JPanel( new GridLayout(1, 1) );
 			txtData = new JTextFieldData("Data ?");
 			painelData.add( txtData.getDTestField());
 			painelData.add( txtData.getDButton());
 			add(painelData);
+            txtData.getDTestField().setText(modelo.getDataNascimento());
 
             // adiconando a 6 linha
             add(new JLabel("Telefone"));
             add(telefoneJTF = new JTextField());
+            telefoneJTF.setText(modelo.getTelefone());
             add(new JLabel("Email"));
             add(emailJTF = new JTextField());
+            emailJTF.setText(modelo.getEmail());
         }
 
         //metodos getters
@@ -156,6 +170,70 @@ public class FormandoVisao extends JFrame
         {
             return String.valueOf(comunaJCB.getSelectedItem());
         }
+
+        //metodos setters
+
+        public void setId(int id)
+        {
+            idJTF.setText("000" +id);
+        }
+
+        public void setNome(String nome)
+        {
+             nomeJTF.setText(nome);
+        }
+
+        public void setNumeroDocumento(String numeroDoDocumento)
+        {
+            numeroDocumentoJTF.setText(numeroDoDocumento);
+        }
+         
+        public void setDataNascimento(String data)
+        {
+            txtData.getDTestField().setText(data);
+        } 
+
+        public void setTelefone(String telefone)
+        {
+            telefoneJTF.setText(telefone);
+        }
+
+        public void setEmail(String email)
+        {
+            emailJTF.setText(email);
+        }
+
+        public void setTipoDocumento(String tipoDeDocumento)
+        {
+            tipoDocumentoJCB.setSelectedItem(tipoDeDocumento);
+        }
+
+        public void setNacionalidade(String nacionalidade)
+        {
+            nacionalidadeJCB.setSelectedItem(nacionalidade);
+        }
+
+        public void setGenero(String genero)
+        {
+            generoJCB.setSelectedItem(genero);
+        }
+
+        public void setProvincia(String provincia)
+        {
+            provinciaJCB.setSelectedItem(provincia);
+        }
+
+        public void setMunicipio(String municipio)
+        {
+            municipioJCB.setSelectedItem(municipio);
+        }
+
+        public void setComuna(String comuna)
+        {
+            comunaJCB.setSelectedItem(comuna);
+        }
+
+
         //metodo para salvar os dados
         public void salvar()
         {
