@@ -30,10 +30,14 @@ public class FormandoVisao extends JFrame
 
           getContentPane().add(painelNorte, BorderLayout.NORTH);
         if(!alterar)
+        {
             getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);  
+        }
         else
+        {
             getContentPane().add(centro = new PainelCentro(modelo), BorderLayout.CENTER);
-            getContentPane().add(sul = new PainelSul(), BorderLayout.NORTH);
+        }
+        getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
         pack();
        //setSize(500, 500);
@@ -319,6 +323,27 @@ public class FormandoVisao extends JFrame
 
 
     }   
+    
+    //funcao para definir o tema de fundo
+    //definirTema();
+         public void definirTema() 
+         {
+             try 
+             {
+                 for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) 
+                 {
+                     if ("Nimbus".equals(info.getName())) 
+                     {
+                         UIManager.setLookAndFeel(info.getClassName());
+                         break;
+                     }
+                 }
+             } 
+             catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) 
+             {
+             }
+         }
+
 
     // criando um painel sul
     class PainelSul extends JPanel implements ActionListener
@@ -341,26 +366,6 @@ public class FormandoVisao extends JFrame
             else
                 dispose();
         }
-    }
-    
-    //funcao para definir o tema de fundo
-    //definirTema();
-         public void definirTema() 
-         {
-             try 
-             {
-                 for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) 
-                 {
-                     if ("Nimbus".equals(info.getName())) 
-                     {
-                         UIManager.setLookAndFeel(info.getClassName());
-                         break;
-                     }
-                 }
-             } 
-             catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) 
-             {
-             }
-         }
-                    
+    }   
+
 }

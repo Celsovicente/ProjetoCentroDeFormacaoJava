@@ -22,7 +22,7 @@ public class EditarFormando extends JFrame
     {
         super("Pesquisa para Edicao dos Dados");
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
-        getContentPane().add(sul = new PainelSul(), BorderLayout.NORTH);
+        getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
         pack();
 		setLocationRelativeTo(null);
 		setVisible(true);   
