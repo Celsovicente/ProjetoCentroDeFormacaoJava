@@ -165,7 +165,7 @@ public class FormandoModelo implements RegistGeneric
 
     public void setProvincia(String novaProvincia)
     {
-          provincia = new StringBufferModelo(novaProvincia, 20);
+        provincia = new StringBufferModelo(novaProvincia, 20);
     }
 
     public void setMunicipio(String novoMunicipio)

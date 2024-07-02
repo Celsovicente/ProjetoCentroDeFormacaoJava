@@ -96,6 +96,33 @@ public class FormandoFile extends ObjectsFile
 		}		
 	}
 
+    public static FormandoModelo getFormandoPorNome(String nomeProcurado)
+	{		
+        FormandoFile ficheiro = new FormandoFile();
+		FormandoModelo modelo = new FormandoModelo();
+		
+		try
+		{
+			ficheiro.stream.seek(4);
+			
+			for(int i = 0; i < ficheiro.getNregistos(); i++)
+			{
+				modelo.read( ficheiro.stream );
+				// equalsignorecase para desativar o case sensetive
+				if (modelo.getNome().equalsIgnoreCase(nomeProcurado) )
+				{
+					return modelo;
+				}
+			}
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}		
+        return modelo;
+	}
+
     public void pesquisarFormandoPorDocumento(String documentoProcurado)
 	{		
        // FormandoFile ficheiro = new FormandoFile();

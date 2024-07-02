@@ -107,9 +107,14 @@ public class EditarFormando extends JFrame
         {
             if(event.getSource() == pesquisarJB)
                 {
+                    FormandoModelo modelo = new FormandoModelo();
+
                     if(centro.getTipoDePesquisa() == 1)
-                        FormandoFile.pesquisarFormandoPorNome(centro.getNomeProcurado());
-                    else if(centro.getTipoDePesquisa() == 2)
+                    {
+                        modelo = FormandoFile.getFormandoPorNome(centro.getNomeProcurado());
+                        new FormandoVisao(true, modelo);
+                    }
+                    else 
                     {
                         FormandoFile file = new FormandoFile();
                         file.pesquisarFormandoPorDocumento(centro.getNumeroDocumentoProcurado());

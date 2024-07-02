@@ -132,7 +132,7 @@ public class MenuPrincipal extends JFrame implements ActionListener
     {
         // criando eventos de clic
         if(event.getSource() == novoFormandoItem)
-            new FormandoVisao();
+            new FormandoVisao(false, new FormandoModelo());
 
         if(event.getSource() == editarFormandoItem)
             new EditarFormando();

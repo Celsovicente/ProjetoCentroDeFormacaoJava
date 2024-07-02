@@ -17,8 +17,9 @@ public class FormandoVisao extends JFrame
 {
     PainelCentro centro;
     PainelSul sul;
-    FormandoModelo modelo = new FormandoModelo();
-    public FormandoVisao(boolean alterar)
+    boolean editar;
+    
+    public FormandoVisao(boolean alterar, FormandoModelo modelo)
     {
         super("Cadastro de Novos Formandos");
         definirTema();
@@ -27,9 +28,12 @@ public class FormandoVisao extends JFrame
         JLabel lbBanner = new JLabel(new ImageIcon("C:\\Users\\Celso_Vicente\\Documents\\Java\\CelsoVicente33019\\image\\images.jpg"));
         painelNorte.add(lbBanner);
 
-        getContentPane().add(painelNorte, BorderLayout.NORTH);
-        getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
-        getContentPane().add(sul = new PainelSul(), BorderLayout.NORTH);
+          getContentPane().add(painelNorte, BorderLayout.NORTH);
+        if(!alterar)
+            getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);  
+        else
+            getContentPane().add(centro = new PainelCentro(modelo), BorderLayout.CENTER);
+            getContentPane().add(sul = new PainelSul(), BorderLayout.NORTH);
 
         pack();
        //setSize(500, 500);
@@ -49,6 +53,61 @@ public class FormandoVisao extends JFrame
         private FormandoFile formandoFile = new FormandoFile();
 
         public PainelCentro()
+        {
+            setLayout(new GridLayout(6, 4));
+            proviMunCom = new JComboBoxTabela3_Tabela3("Provincia.tab", "Municipio.tab", "Comunas.tab");
+
+            // adicionando a 1 linha 
+            add(new JLabel("Id"));
+            add(idJTF = new JTextField());
+            idJTF.setText("000" +formandoFile.getProximoCodigo());
+            idJTF.setFocusable(false);
+
+            add(new JLabel("Nome"));
+            add(nomeJTF = new JTextField());
+
+            // adicionando a 2 linha
+            add(new JLabel("Tipo de Documento"));
+            add(tipoDocumentoJCB = UInterfaceBox.createJComboBoxPersonalTab2("TipoDeDocumento.tab"));
+    
+            add(new JLabel("Numero do Documento"));
+            add(numeroDocumentoJTF = new JTextField());
+    
+            //adicionando a 3 linha
+            add(new JLabel("Nacionalidade"));
+            add(nacionalidadeJCB = UInterfaceBox.createJComboBoxPersonalTab2("Nacionalidade.tab"));
+    
+            add(new JLabel("Genero"));
+            add(generoJCB = new JComboBox(generoArray));
+    
+            //adicionando a 4 linha
+            add(new JLabel("Provincia"));
+            add(provinciaJCB = proviMunCom.getComboBoxFather() );
+
+            add(new JLabel("Municipio"));
+            add(municipioJCB = proviMunCom.getComboBoxSun() );
+            
+
+            //adicionando a 5 linha
+            add(new JLabel("Comuna"));
+            add(comunaJCB = proviMunCom.getComboBoxNeto());
+
+            add(new JLabel("Data de Nascimento"));
+            JPanel painelData = new JPanel( new GridLayout(1, 1) );
+			txtData = new JTextFieldData("Data ?");
+			painelData.add( txtData.getDTestField());
+			painelData.add( txtData.getDButton());
+			add(painelData);
+
+            // adiconando a 6 linha
+            add(new JLabel("Telefone"));
+            add(telefoneJTF = new JTextField());
+            
+            add(new JLabel("Email"));
+            add(emailJTF = new JTextField());
+        }
+
+        public PainelCentro(FormandoModelo modelo)
         {
             setLayout(new GridLayout(6, 4));
             proviMunCom = new JComboBoxTabela3_Tabela3("Provincia.tab", "Municipio.tab", "Comunas.tab");
@@ -274,34 +333,34 @@ public class FormandoVisao extends JFrame
             cancelarJB.addActionListener(this);
             
         }
-
-        
+ 
         public void actionPerformed(ActionEvent event)
         {
             if(event.getSource() == salvarJB)
                 centro.salvar();
             else
                 dispose();
-
         }
-
     }
     
     //funcao para definir o tema de fundo
     //definirTema();
          public void definirTema() 
          {
-             try {
-                 for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                     if ("Nimbus".equals(info.getName())) {
+             try 
+             {
+                 for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) 
+                 {
+                     if ("Nimbus".equals(info.getName())) 
+                     {
                          UIManager.setLookAndFeel(info.getClassName());
                          break;
                      }
                  }
-             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                 }
+             } 
+             catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) 
+             {
+             }
          }
-                
-
-    
+                    
 }
