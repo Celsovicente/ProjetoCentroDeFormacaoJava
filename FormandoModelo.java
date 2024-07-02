@@ -39,8 +39,9 @@ public class FormandoModelo implements RegistGeneric
     }
 
     //Construtor com parametros
-    public FormandoModelo(int id, String nome, String tipoDocumento, String numeroDocumento, String dataNascimento,
-    String genero, String telefone, String email, String nacionalidade, String provincia, String municipio, String comuna)
+    public FormandoModelo(int id, String nome, String tipoDocumento, String numeroDocumento, String telefone,
+    String email, String genero, String nacionalidade, String provincia, String municipio, String comuna, 
+    String dataNascimento)
     {
         this.id = id;
         this.nome = new StringBufferModelo(nome, 50);
@@ -177,45 +178,25 @@ public class FormandoModelo implements RegistGeneric
     {
         comuna = new StringBufferModelo(novaComuna, 20);
     }
-    
-
-    // metodo toString
-    public String toString()
-    {
-        String dados = "Dados do Formando Modelo\n\n";
-        dados += "Id: " + getId() + "\n";
-        dados += "Nome: " + getNome() + "\n";
-        dados += "Tipo de Documento: " + getTipoDocumento() + "\n";
-        dados += "Numero do Documento:" + getNumeroDocumento() + "\n";
-        dados += "Genero: " + getTelefone() + "\n";
-        dados += "Nacionalidade: " + getEmail() + "\n";
-        dados += "Email: " + getGenero() + "\n";
-        dados += "Provincia: " + getNacionalidade() + "\n";
-        dados += "Municipio: " + getProvincia() + "\n";
-        dados += "Comuna: " + getMunicipio() + "\n";
-        dados += "Data de Nascimento:" + getComuna() + "\n";
-        dados += "Telefone: " + getDataNascimento() + "\n";
-        return dados;
-    }
 
     // // metodo toString
-    // public String toString()
-    // {
-    //     String dados = "Dados do Formando Modelo\n\n";
-    //     dados += "Id: " + getId() + "\n";
-    //     dados += "Nome: " + getNome() + "\n";
-    //     dados += "Tipo de Documento: " + getTipoDocumento() + "\n";
-    //     dados += "Numero do Documento:" + getNumeroDocumento() + "\n";
-    //     dados += "Telefone: " + getTelefone() + "\n";
-    //     dados += "Email: " + getEmail() + "\n";
-    //     dados += "Genero: " + getGenero() + "\n";
-    //     dados += "Nacionalidade: " + getNacionalidade() + "\n";
-    //     dados += "Provincia: " + getProvincia() + "\n";
-    //     dados += "Municipio: " + getMunicipio() + "\n";
-    //     dados += "Comuna: " + getComuna() + "\n";
-    //     dados += "Data de Nascimento: " + getDataNascimento() + "\n";
-    //     return dados;
-    // }
+     public String toString()
+     {
+         String dados = "Dados do Formando Modelo\n\n";
+         dados += "Id: " + getId() + "\n";
+         dados += "Nome: " + getNome() + "\n";
+         dados += "Tipo de Documento: " + getTipoDocumento() + "\n";
+         dados += "Numero do Documento:" + getNumeroDocumento() + "\n";
+         dados += "Telefone: " + getTelefone() + "\n";
+         dados += "Email: " + getEmail() + "\n";
+         dados += "Genero: " + getGenero() + "\n";
+         dados += "Nacionalidade: " + getNacionalidade() + "\n";
+         dados += "Provincia: " + getProvincia() + "\n";
+         dados += "Municipio: " + getMunicipio() + "\n";
+         dados += "Comuna: " + getComuna() + "\n";
+         dados += "Data de Nascimento: " + getDataNascimento() + "\n";
+         return dados;
+     }
 
 
     //calcular o sizeof
